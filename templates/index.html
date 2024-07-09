@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>База фільмів</h1>
+
+  <form action="{{ url_for('index') }}" method="post">
+    <label for="title">Назва:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="year">Рік:</label>
+    <input type="number" id="year" name="year" required>
+
+    <label for="format">Формат:</label>
+    <input type="text" id="format" name="format" required>
+
+    <label for="actors">Актори:</label>
+    <textarea id="actors" name="actors" required></textarea>
+
+    <button type="submit">Додати фільм</button>
+  </form>
+
+  {% if movies %}
+    <h2>Фільми</h2>
+    <ul>
+      {% for movie in movies %}
+        <li>
+          <strong>Ідентифікатор:</strong> {{ movie.code }} - {{ movie.title }} ({{ movie.year }}, {{ movie.format }})
+          <a href="{{ url_for('get_movie', code=movie.code) }}">Переглянути</a>
+          <a href="{{ url_for('delete', code=movie.code) }}">Видалити</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Немає доданих фільмів.</p>
+  {% endif %}
+
+  <a href="{{ url_for('sort_movies') }}">Сортувати за назвою</a>
+  <a href="{{ url_for('search') }}">Пошук фільмів</a>
+  <a href="{{ url_for('import_movies') }}">Імпортувати фільми</a>
+{% endblock %}

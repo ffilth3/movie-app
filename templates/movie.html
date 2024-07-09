@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Інформація про фільм</h1>
+
+  <p><strong>Ідентифікатор:</strong> {{ movie.code }}</p>
+  <p><strong>Назва:</strong> {{ movie.title }}</p>
+  <p><strong>Рік:</strong> {{ movie.year }}</p>
+  <p><strong>Формат:</strong> {{ movie.format }}</p>
+  <p><strong>Актори:</strong> {{ movie.actors }}</p>
+
+  <a href="{{ url_for('index') }}">Повернутися до фільмів</a>
+{% endblock %}

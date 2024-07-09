@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Імпорт фільмів</h1>
+
+  <form action="{{ url_for('import_movies') }}" method="post" enctype="multipart/form-data">
+    <label for="file">Оберіть файл:</label>
+    <input type="file" id="file" name="file" required>
+    <button type="submit">Імпортувати</button>
+  </form>
+{% endblock %}

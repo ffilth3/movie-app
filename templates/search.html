@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Пошук фільмів</h1>
+
+  <form action="{{ url_for('search') }}" method="post">
+    <label for="query">Пошук:</label>
+    <input type="text" id="query" name="query" required>
+    <button type="submit">Шукати</button>
+  </form>
+
+  {% if movies %}
+    <h2>Результати</h2>
+    <ul>
+      {% for movie in movies %}
+        <li>
+          <strong>Ідентифікатор:</strong> {{ movie.code }} - {{ movie.title }} ({{ movie.year }}, {{ movie.format }})
+          <a href="{{ url_for('get_movie', code=movie.code) }}">Переглянути</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Немає знайдених фільмів.</p>
+  {% endif %}
+{% endblock %}
